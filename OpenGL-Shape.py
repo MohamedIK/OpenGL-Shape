@@ -1,4 +1,3 @@
-import sys
 from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.raw.GLU import gluLookAt, gluPerspective
@@ -11,7 +10,7 @@ def draw_sphere():
 def display():
     global rotation
 
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    glClear(GL_COLOR_BUFFER_BIT)
     glLoadIdentity()
     gluLookAt(0, 0, 3, 0, 0, 0, 0, 1, 0)  # Set up the camera
 
@@ -37,16 +36,13 @@ def idle():
 
 def main():
     glutInit(sys.argv)
-    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
+    glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE)
     glutInitWindowSize(800, 600)
-    glutCreateWindow(b"Rotating Sphere")
-    glEnable(GL_DEPTH_TEST)
-
+    glutCreateWindow("Rotating Sphere")
     glutDisplayFunc(display)
     glutReshapeFunc(reshape)
     glutIdleFunc(idle)
 
     glutMainLoop()
 
-if __name__ == '__main__':
-    main()
+main()
